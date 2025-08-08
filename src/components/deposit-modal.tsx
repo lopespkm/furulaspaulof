@@ -274,7 +274,7 @@ const gatewayDefault = process.env.NEXT_PUBLIC_GATEWAY_DEFAULT;
 
   const handleGeneratePayment = async () => {
     const amount = parseFloat(customAmount.replace(',', '.'));
-    if (!amount || amount < 1) {
+    if (!amount || amount < 10) {
       toast.error('Por favor, insira um valor válido (mínimo R$ 10,00)');
       return;
     }
@@ -377,9 +377,9 @@ const gatewayDefault = process.env.NEXT_PUBLIC_GATEWAY_DEFAULT;
                     // Definir badges para diferentes valores
                     let badge = null;
                     if (amount === 20) {
-                      badge = { text: 'Popular', color: getAppColor() };
+                      badge = { text: 'Em Dobro', color: getAppColor() };
                     } else if (amount === 40) {
-                      badge = { text: '✨ Recomendado', color: getAppColor() };
+                      badge = { text: '✨ Em Dobro', color: getAppColor() };
                     } else if (amount === 80) {
                       badge = { text: '+Querido', color: getAppColor() };
                     } else if (amount === 100) {
@@ -453,7 +453,7 @@ const gatewayDefault = process.env.NEXT_PUBLIC_GATEWAY_DEFAULT;
               {/* Generate Payment Button */}
               <Button
                 onClick={handleGeneratePayment}
-                disabled={!customAmount || getCurrentAmount() < 1 || isGeneratingPayment}
+                disabled={!customAmount || getCurrentAmount() < 10 || isGeneratingPayment}
                 className={`${getAppGradient()} w-full text-white font-semibold py-2 sm:py-3 px-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl border border-neutral-400/20 disabled:border-neutral-600/20 text-sm sm:text-base`}
               >
                 {isGeneratingPayment ? (
